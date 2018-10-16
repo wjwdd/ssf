@@ -1,60 +1,94 @@
 <template>
   <div class="my-tab">
+    <div class="fabu">
+      <div class="fabubtn">
+        <div class="huibtn">
+          +
+        </div>
+      </div>
+    </div>
     <div class="tab-item">
       <span class="tab-link" @click="aaa">yuan</span>
-      
     </div>
-    
     <router-link tag="div" class="tab-item" :to="{ name: 'index' }">
-      <span class="tab-link">推荐</span>
+      <span class="tab-link">首页</span>
     </router-link>
     <div class="tab-item">
       <span class="tab-link" @click="back">返回</span>
-      
     </div>
-    
   </div>
 </template>
-
 <script>
 export default {
-  methods:{
-    aaa(){
+  methods: {
+    aaa() {
       console.log(111)
       this.$emit('aaa', true)
     },
-    back(){
+    back() {
+      console.log(111)
       this.$router.go(-1)
     }
   }
 }
-</script>
 
+</script>
 <style lang="scss" scoped>
 @import '~@/common/scss/const.scss';
+@import '~@/common/scss/mymixin.scss';
 
 .my-tab {
-  width:100%;
-  position:fixed;
-  background:$color-background ;
-  bottom:0px;
+  width: 100%;
+  position: fixed;
+  background: #fff;
+  bottom: 0px;
   display: flex;
-  height: 98px;
   line-height: 98px;
   font-size: $font-size-medium;
+  padding-top: 50px;
+  border-top: 2px solid #f5f5f5;
+
   .tab-item {
     flex: 1;
     text-align: center;
+
     .tab-link {
       padding-bottom: 5px;
-      color: $color-text-l;
+      color: #828282;
     }
-    &.router-link-active {
-      .tab-link {
-        color: $color-theme;
-        border-bottom: 2px solid $color-theme;
+  }
+
+  .fabu {
+    position: absolute;
+    top: -50px;
+    left: 50%;
+    transform: translateX(-50%);
+
+    .fabubtn {
+      @include wflex(row,
+      center,
+      center);
+      width: 120px;
+      height: 120px;
+      background: #fff;
+      border-radius: 100%;
+      color: #fff;
+      font-size: 70px;
+      border-top: 2px solid #ccc;
+
+      .huibtn {
+        @include wflex(row,
+        center,
+        center);
+        width: 100px;
+        height: 100px;
+        background: #ccc;
+        border-radius: 100%;
+        color: #fff;
+        font-size: 70px;
       }
     }
   }
 }
+
 </style>
