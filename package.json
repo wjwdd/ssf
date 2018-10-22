@@ -19,14 +19,17 @@
     }
   },
   "dependencies": {
+    "axios": "^0.18.0",
     "cube-ui": "~1.10.15",
     "postcss-px2rem": "^0.3.0",
     "postcss-px2rem-exclude": "0.0.6",
     "px2rem-loader": "^0.1.9",
+    "store": "^2.0.12",
     "vue": "^2.5.2",
     "vue-amap": "^0.5.8",
     "vue-router": "^3.0.1",
     "vue-ydui": "^1.2.6",
+    "vuex": "^3.0.1",
     "vux": "^2.9.2"
   },
   "devDependencies": {

@@ -18,7 +18,7 @@ export function fetch(options, load = true) {
         'Content-Type': 'application/x-www-form-urlencoded',
         // 'token_in_header': global_.token,//token从全局变量那里传过来
       },
-      baseURL: api.Hallowmas + '/index.php/Api/',//接口公共
+      baseURL: api.Hallowmas + '/api.php/',//接口公共
       timeout: 30 * 1000, // 30秒超时,
       responseType: 'json', // default,
       transformRequest: [function(data) {

@@ -9,6 +9,14 @@ module.exports = {
 
     // Paths
     assetsSubDirectory: 'static',
+    assetsPublicPath: '/', // 编译发布的根目录，可配置为资源服务器域名或 CDN 域名
+    '/api': {
+      target: 'http://ssf.hasaigei.com', // 你要代理的域名和端口号，要加上http
+      changeOrigin: true,
+      pathRewrite: {
+        '^/api': '/api'
+      }
+    },
     assetsPublicPath: '/',
     proxyTable: {},
 

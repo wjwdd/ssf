@@ -1,9 +1,10 @@
 
 <template>
   <transition name="slide">
-    <div class="my-singer-detail">
-    <h1>{{ msg }}</h1>
+  <div class="my-singer-detail">
+    <h1>{{ msg }}  </h1>
   </div>
+  
   </transition>
   
 </template>
@@ -23,7 +24,9 @@ export default {
 <style lang="scss" scoped>
 @import '~@/common/scss/const.scss';
 @import '~@/common/scss/mymixin.scss';
+
 .my-singer-detail {
+
   width:100%;
   height:100%;
   position: fixed;

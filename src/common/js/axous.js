@@ -3,48 +3,26 @@ import api from 'common/js/url.js'; //引用url.js
 
 
 //查看用户
-export function lookOption() { //lookOption是你要调用接口的名字，issuer,userId是传进来的参数
+export function $login(tell,password) { //lookOption是你要调用接口的名字，issuer,userId是传进来的参数
   return fetch({
     //api.Hallowmas 引用url.js里面的数据
-    url: 'My/shezhi',
+    url: 'login/login',
     method: 'post', //请求方法
-    params: {
-
+    data: {
+      tell,
+      password,
     }
   })
 }
 
 
-export function userinfor(uid) { 
+export function $savetell(code,tell) { 
   return fetch({
-    //api.Hallowmas 引用url.js里面的数据
-    url: 'Register/user_info',
+    url: 'member/savetell',
     method: 'post', //请求方法
     data: {
-    	uid:uid,
-    },
-  })
-}
-
-export function last(data) { 
-	
-  return fetch({
-    //api.Hallowmas 引用url.js里面的数据
-    url: 'Route/last',
-    method: 'post', //请求方法
-    data: data,
-  })
-}
-
-
-
-export function shoucang(uid) { 
-  return fetch({
-    //api.Hallowmas 引用url.js里面的数据
-    url: 'My/shoucang',
-    method: 'post', //请求方法
-    data: {
-    	uid:uid,
-    },
+      code,
+      tell,
+    }
   })
 }

@@ -89,6 +89,8 @@ Vue.use(ScrollNavBar)
 import VueAMap from 'vue-amap';
 import YDUI from 'vue-ydui'; /* 相当于import YDUI from 'vue-ydui/ydui.rem.js' */
 import 'vue-ydui/dist/ydui.rem.css';
+import axios from 'axios'; //引入文件
+import store from './store'
 Vue.use(YDUI);
 Vue.config.productionTip = false
 Vue.use(VueAMap);
@@ -102,6 +104,7 @@ VueAMap.initAMapApiLoader({
 new Vue({
   el: '#app',
   router,
+  store,//使用store
   template: '<App/>',
   components: { App }
 })

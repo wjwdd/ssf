@@ -36,17 +36,15 @@
           </div>
         </div>
       </div>
-      
       <!-- 起点终点 -->
-
       <div class="fourway">
-        
       </div>
     </div>
   </div>
 </template>
 <script>
 import Header from '@/base/header/header'
+import { $login,$savetell } from '@/common/js/axous.js'
 export default {
   components: {
     Header
@@ -87,7 +85,12 @@ export default {
     }
   },
   mounted() {
-
+    $login(1212, 12121).then((res) => {
+      console.log(res)
+    })
+    $savetell(1212, 12121).then((res) => {
+      console.log(res)
+    })
   },
   methods: {
     tzym() {
@@ -129,17 +132,18 @@ export default {
 }
 
 .indexcon {
-  width:96%;
+  width: 96%;
   margin: 2%;
 
-  position:absolute;
-  top:400px;
+  position: absolute;
+  top: 400px;
+
   .qzdian {
     background: #fff;
-    padding:20px;
+    padding: 20px;
 
     .qidian {
-      padding:20px;
+      padding: 20px;
       @include wflex(row,
       flex-start,
       center);
@@ -149,16 +153,17 @@ export default {
         height: 15px;
         background: #f00;
         border-radius: 100%;
-        margin-right:20px;
+        margin-right: 20px;
       }
 
       .dizhi {}
     }
   }
-  .fourway{
-    padding:40px;
+
+  .fourway {
+    padding: 40px;
     background: #fff;
-    margin-top:20px;
+    margin-top: 20px;
   }
 }
 
