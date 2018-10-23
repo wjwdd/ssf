@@ -91,6 +91,10 @@ import YDUI from 'vue-ydui'; /* 相当于import YDUI from 'vue-ydui/ydui.rem.js'
 import 'vue-ydui/dist/ydui.rem.css';
 import axios from 'axios'; //引入文件
 import store from './store'
+
+import md5 from 'js-md5';
+Vue.prototype.$md5 = md5;
+
 Vue.use(YDUI);
 Vue.config.productionTip = false
 Vue.use(VueAMap);

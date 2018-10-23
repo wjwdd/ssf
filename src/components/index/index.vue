@@ -44,7 +44,7 @@
 </template>
 <script>
 import Header from '@/base/header/header'
-import { $login,$savetell } from '@/common/js/axous.js'
+import { $login, $savetell, $savepass, $register, $sendcode } from '@/common/js/axous.js'
 export default {
   components: {
     Header
@@ -85,12 +85,8 @@ export default {
     }
   },
   mounted() {
-    $login(1212, 12121).then((res) => {
-      console.log(res)
-    })
-    $savetell(1212, 12121).then((res) => {
-      console.log(res)
-    })
+    console.log(this.$md5('123456'))
+
   },
   methods: {
     tzym() {

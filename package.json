@@ -21,6 +21,7 @@
   "dependencies": {
     "axios": "^0.18.0",
     "cube-ui": "~1.10.15",
+    "js-md5": "^0.7.3",
     "postcss-px2rem": "^0.3.0",
     "postcss-px2rem-exclude": "0.0.6",
     "px2rem-loader": "^0.1.9",
