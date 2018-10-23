@@ -8,13 +8,19 @@
       </div>
     </div>
     <div class="tab-item">
-      <span class="tab-link" @click="aaa">yuan</span>
+      <div class="tab-link" @click="aaa">
+        <img src="@img/gd.png">
+      </div>
     </div>
     <router-link tag="div" class="tab-item" :to="{ name: 'index' }">
-      <span class="tab-link">首页</span>
+      <div class="tab-link">
+        <img src="@img/shouye.png">
+      </div>
     </router-link>
     <div class="tab-item">
-      <span class="tab-link" @click="back">返回</span>
+      <div class="tab-link" @click="back">
+        <img src="@img/back.png">
+      </div>
     </div>
   </div>
 </template>
@@ -45,7 +51,7 @@ export default {
   display: flex;
   line-height: 98px;
   font-size: $font-size-medium;
-  padding-top: 50px;
+  padding-top: 70px;
   border-top: 2px solid #f5f5f5;
 
   .tab-item {
@@ -55,6 +61,9 @@ export default {
     .tab-link {
       padding-bottom: 5px;
       color: #828282;
+      img{
+        height:27px;
+      }
     }
   }
 
@@ -68,8 +77,8 @@ export default {
       @include wflex(row,
       center,
       center);
-      width: 120px;
-      height: 120px;
+      width: 110px;
+      height: 110px;
       background: #fff;
       border-radius: 100%;
       color: #fff;
@@ -80,8 +89,8 @@ export default {
         @include wflex(row,
         center,
         center);
-        width: 100px;
-        height: 100px;
+        width: 84px;
+        height: 84px;
         background: #ccc;
         border-radius: 100%;
         color: #fff;

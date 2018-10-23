@@ -7,7 +7,7 @@
       </keep-alive>
     </transition>
     <my-tab @aaa="aaa"></my-tab>
-    <yd-popup v-model="show3"  position="left" width="60%">
+    <yd-popup v-model="show3"  position="left" width="50%">
         <yd-button type="danger" style="margin: 30px;" @click.native="show3 = false">Close Left Popup</yd-button>
     </yd-popup>
   </div>

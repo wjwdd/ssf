@@ -39,6 +39,7 @@
       <!-- 起点终点 -->
       <div class="fourway">
       </div>
+      <cube-upload action="http://ssf.hasaigei.com/api.php/member/headimgurl" :simultaneous-uploads="1" @files-added="filesAdded" fileName="name" :headers="headers" />
     </div>
   </div>
 </template>
@@ -53,6 +54,9 @@ export default {
   data() {
     let self = this;
     return {
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+      },
       // center: [121.59996, 31.197646],
       zooms: [13, 19],
       lng: 0,
@@ -93,6 +97,22 @@ export default {
       this.$router.push({
         name: 'helloWorld'
       })
+    },
+    filesAdded(files) {
+      let hasIgnore = false
+      const maxSize = 1 * 1024 * 1024 // 1M
+      for (let k in files) {
+        const file = files[k]
+        if (file.size > maxSize) {
+          file.ignore = true
+          hasIgnore = true
+        }
+      }
+      hasIgnore && this.$createToast({
+        type: 'warn',
+        time: 1000,
+        txt: 'You selected >1M files'
+      }).show()
     }
   }
 }

@@ -40,7 +40,8 @@ const webpackConfig  = {
       'vue$': 'vue/dist/vue.esm.js',
       '@': resolve('src'),
       'common': resolve('src/common'),
-      'components': resolve('src/components')
+      'components': resolve('src/components'),
+      '@img': resolve('src/assets')
     }
   },
   module: {
