@@ -1,4 +1,4 @@
-import { fetch } from 'common/js/fecth.js';
+import { fetch,mapfetch } from 'common/js/fecth.js';
 import api from 'common/js/url.js'; //引用url.js
 
 
@@ -53,6 +53,26 @@ export function $savepass(code, password) {
     data: {
       code,
       password,
+    }
+  })
+}
+
+export function $ajaxcheckdriver() {
+  return fetch({
+    url: 'release/ajaxcheckdriver',
+    method: 'post', //请求方法
+    data: {
+      
+    }
+  })
+}
+export function $geocode_regeo(location) {
+  return mapfetch({
+    baseURL:'',
+    url: 'https://restapi.amap.com/v3/geocode/regeo?key=cc66034af56b18d878c0051b58733992',
+    method: 'get', //请求方法
+    params: {
+      location,
     }
   })
 }

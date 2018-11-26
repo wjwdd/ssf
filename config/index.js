@@ -6,25 +6,22 @@ const path = require('path')
 
 module.exports = {
   dev: {
-
-    // Paths
+    env: require('./dev.env'),
+    host: '192.168.2.106', // can be overwritten by 
+    port: 8080,
+    autoOpenBrowser: true,
     assetsSubDirectory: 'static',
-    assetsPublicPath: '/', // 编译发布的根目录，可配置为资源服务器域名或 CDN 域名
-    '/api': {
-      target: 'http://ssf.hasaigei.com', // 你要代理的域名和端口号，要加上http
-      changeOrigin: true,
-      pathRewrite: {
-        '^/api': '/api'
+    assetsPublicPath: '/',
+    proxyTable: {
+      '/apis': { //将www.exaple.com印射为/apis
+        target: 'http://127.0.0.1:8080', // 接口域名
+        secure: false, // 如果是https接口，需要配置这个参数
+        changeOrigin: true, //是否跨域
+        pathRewrite: {
+          '^/apis': '' //需要rewrite的,
+        }
       }
     },
-    assetsPublicPath: '/',
-    proxyTable: {},
-
-    // Various Dev Server settings
-    // host: '192.168.0.102',
-    host: 'localhost',
-    port: 8080, // can be overwritten by process.env.PORT, if port is in use, a free one will be determined
-    autoOpenBrowser: false,
     errorOverlay: true,
     notifyOnErrors: true,
     poll: false, // https://webpack.js.org/configuration/dev-server/#devserver-watchoptions-

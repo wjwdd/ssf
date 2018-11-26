@@ -1,6 +1,6 @@
 <template>
   <div class="hello">
-    <Header></Header>
+   <!--  <Header></Header>
     <div class="amap-wrapper">
       <el-amap class="amap-box" :plugin="plugin" :zooms="zooms" :vid="'amap-vue'">
         <el-amap-info-window v-if="loaded" :position="window.position">
@@ -19,7 +19,7 @@
       </el-amap>
     </div>
     <div class="indexcon">
-      <!-- 起点终点 -->
+      起点终点
       <div class="qzdian">
         <div class="qidian">
           <div class="yuandian">
@@ -35,17 +35,19 @@
             山东省青岛市看见看见看见
           </div>
         </div>
-      </div>
+      </div> -->
       <!-- 起点终点 -->
-      <div class="fourway">
+     <!--  <div class="fourway">
       </div>
       <cube-upload action="http://ssf.hasaigei.com/api.php/member/headimgurl" :simultaneous-uploads="1" @files-added="filesAdded" fileName="name" :headers="headers" />
-    </div>
+    </div> -->
+    <div @click='login'>sdsd</div>
+    <div @click='login1'>sddddddddddddd</div>
   </div>
 </template>
 <script>
 import Header from '@/base/header/header'
-import { $login, $savetell, $savepass, $register, $sendcode } from '@/common/js/axous.js'
+import { $login, $savetell, $savepass, $register, $sendcode,$ajaxcheckdriver } from '@/common/js/axous.js'
 export default {
   components: {
     Header
@@ -93,6 +95,16 @@ export default {
 
   },
   methods: {
+    login(){
+      $login(15064281195,123456).then(res=>{
+
+      })
+    },
+    login1(){
+      $ajaxcheckdriver().then(res=>{
+
+      })
+    },
     tzym() {
       this.$router.push({
         name: 'helloWorld'
@@ -121,7 +133,9 @@ export default {
 <style lang="scss" scoped>
 @import '~@/common/scss/const.scss';
 @import '~@/common/scss/mymixin.scss';
-
+.hello{
+  // display:none;
+}
 .amap-wrapper {
   width: 100%;
   height: 500px;
