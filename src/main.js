@@ -4,6 +4,11 @@ import Vue from 'vue'
 // By default we import all the components.
 // Only reserve the components on demand and remove the rest.
 // Style is always required.
+var SocialSharing = require('vue-social-sharing');
+
+Vue.use(SocialSharing);
+import VConsole from 'vconsole';
+const vConsole = new VConsole(); // 不使用的时候，可以将这句屏蔽掉；
 import {
   Style,
   // basic

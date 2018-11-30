@@ -7,7 +7,7 @@ const path = require('path')
 module.exports = {
   dev: {
     env: require('./dev.env'),
-    host: '192.168.2.106', // can be overwritten by 
+    host: 'localhost', // can be overwritten by 
     port: 8080,
     autoOpenBrowser: true,
     assetsSubDirectory: 'static',
@@ -60,8 +60,8 @@ module.exports = {
 
     // Paths
     assetsRoot: path.resolve(__dirname, '../dist'),
-    assetsSubDirectory: 'static',
-    assetsPublicPath: '/',
+    assetsSubDirectory: '',
+    assetsPublicPath: '/junwei/',
 
     /**
      * Source Maps

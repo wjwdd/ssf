@@ -66,6 +66,21 @@ export function $ajaxcheckdriver() {
     }
   })
 }
+
+export function $driverrelese(data) {
+  return fetch({
+    url: 'Release/driverrelese',
+    method: 'post', //请求方法
+    data:data
+  })
+}
+export function $passengerrelese(data) {
+  return fetch({
+    url: 'Release/passengerrelese',
+    method: 'post', //请求方法
+    data:data
+  })
+}
 export function $geocode_regeo(location) {
   return mapfetch({
     baseURL:'',

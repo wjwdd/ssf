@@ -1,6 +1,6 @@
 <template>
   <div class="hello">
-   <!--  <Header></Header>
+    <!--  <Header></Header>
     <div class="amap-wrapper">
       <el-amap class="amap-box" :plugin="plugin" :zooms="zooms" :vid="'amap-vue'">
         <el-amap-info-window v-if="loaded" :position="window.position">
@@ -36,18 +36,52 @@
           </div>
         </div>
       </div> -->
-      <!-- 起点终点 -->
-     <!--  <div class="fourway">
+    <!-- 起点终点 -->
+    <!--  <div class="fourway">
       </div>
       <cube-upload action="http://ssf.hasaigei.com/api.php/member/headimgurl" :simultaneous-uploads="1" @files-added="filesAdded" fileName="name" :headers="headers" />
     </div> -->
+   <!--  <social-sharing url="https://vuejs.org/" inline-template>
+  <div>
+      <network network="facebook">
+        <i class="fa fa-facebook"></i> Facebook
+      </network>
+      <network network="googleplus">
+        <i class="fa fa-google-plus"></i> Google +
+      </network>
+      <network network="linkedin">
+        <i class="fa fa-linkedin"></i> LinkedIn
+      </network>
+      <network network="pinterest">
+        <i class="fa fa-pinterest"></i> Pinterest
+      </network>
+      <network network="reddit">
+        <i class="fa fa-reddit"></i> Reddit
+      </network>
+      <network network="twitter">
+        <i class="fa fa-twitter"></i> Twitter
+      </network>
+      <network network="vk">
+        <i class="fa fa-vk"></i> VKontakte
+      </network>
+      <network network="weibo">
+        <i class="fa fa-weibo"></i> Weibo
+      </network> 
+      <network network="whatsapp">
+        <i class="fa fa-whatsapp"></i> Whatsapp
+      </network>
+  </div>
+</social-sharing> -->
     <div @click='login'>sdsd</div>
-    <div @click='login1'>sddddddddddddd</div>
+    <div class="sss" @click='login1'>sddddddddddddd</div>
+    <div @click='sdsd'>sddddssssssssddddddddd</div>
+    <!-- <div id="container"></div>  -->
   </div>
 </template>
 <script>
+import 'common/js/plusShare.js'
 import Header from '@/base/header/header'
-import { $login, $savetell, $savepass, $register, $sendcode,$ajaxcheckdriver } from '@/common/js/axous.js'
+import { $login, $savetell, $savepass, $register, $sendcode, $ajaxcheckdriver, $driverrelese, $passengerrelese } from '@/common/js/axous.js'
 export default {
   components: {
     Header
@@ -91,19 +125,70 @@ export default {
     }
   },
   mounted() {
-    console.log(this.$md5('123456'))
-
+//     var map = new AMap.Map('container');
+// AMap.plugin('AMap.Driving', function() {
+//   var driving = new AMap.Driving({
+//     // 驾车路线规划策略，AMap.DrivingPolicy.LEAST_TIME是最快捷模式
+//     policy: AMap.DrivingPolicy.LEAST_TIME
+//   })
+  
+//   var startLngLat = [116.379028, 39.865042]
+//   var endLngLat = [116.427281, 39.903719]
+  
+//   driving.search(startLngLat, endLngLat, function (status, result) {
+//     // 未出错时，result即是对应的路线规划方案
+//   })
+// })
+    console.log(this.mTokm(12312313))
+    let data = {
+      beginaddress: 1,
+      overaddress: 1,
+      begintime: 1,
+      backtime: 1,
+      beizhu: 1,
+      zuowei: 1,
+      price: 1,
+      juli: 1,
+      fabutype: 1,
+      type: 1,
+      tell: 1
+    }
+    $driverrelese(data).then(res => {
+      console.log(res)
+    })
+    $passengerrelese(data).then(res => {
+      console.log(res)
+    })
   },
   methods: {
-    login(){
-      $login(15064281195,123456).then(res=>{
+    sdsd(){
+      //分享内容，开发者可自定义
+    var message = {
+        title: "plusShare示例", //应用名字
+        content: "plusShare基于HTML5+的share模块，开发者只需调用一个API，即可调起微信好友、微信朋友圈、系统更多分享功能",
+        href: "https://mp.weixin.qq.com/s/pTB1wDjzutXOhZeuTigiDA", //分享出去后，点击跳转地址
+        thumbs: ["http://img-cdn-qiniu.dcloud.net.cn/icon3.png"] //分享缩略图
+    }
+    //调起分享
+    window.plusShare(message, function(res) {
+        //分享回调函数
+        if(res) {
+            plus.nativeUI.toast("分享成功");
+        } else {
+            plus.nativeUI.toast("分享失败");
+        }
+    })
+    },
+    mTokm(x) {
+      return Math.floor((x / 1000) * 100) / 100
+    },
+    login() {
+      $login(15064281195, 123456).then(res => {
 
       })
     },
-    login1(){
-      $ajaxcheckdriver().then(res=>{
-
-      })
+    login1() {
+      window.location.href="http://uri.amap.com/navigation?from=116.478346,39.997361,startpoint&to=116.3246,39.966577,endpoint&via=116.402796,39.936915,midwaypoint&mode=car&policy=1&src=mypage&coordinate=gaode&callnative=0"
     },
     tzym() {
       this.$router.push({
@@ -133,9 +218,17 @@ export default {
 <style lang="scss" scoped>
 @import '~@/common/scss/const.scss';
 @import '~@/common/scss/mymixin.scss';
-.hello{
+.sss{
+  width:100px;
+  height:100px;
+  background: #ccc;
+}
+#container {width:300px; height: 180px; }  
+.hello {
   // display:none;
 }
+
+
 .amap-wrapper {
   width: 100%;
   height: 500px;
