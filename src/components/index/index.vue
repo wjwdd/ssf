@@ -41,7 +41,7 @@
       </div>
       <cube-upload action="http://ssf.hasaigei.com/api.php/member/headimgurl" :simultaneous-uploads="1" @files-added="filesAdded" fileName="name" :headers="headers" />
     </div> -->
-   <!--  <social-sharing url="https://vuejs.org/" inline-template>
+    <!--  <social-sharing url="https://vuejs.org/" inline-template>
   <div>
       <network network="facebook">
         <i class="fa fa-facebook"></i> Facebook
@@ -74,14 +74,46 @@
 </social-sharing> -->
     <div @click='login'>sdsd</div>
     <div class="sss" @click='login1'>sddddddddddddd</div>
-    <div @click='sdsd'>sddddssssssssddddddddd</div>
+    <div @click='showDateSegmentPicker'>sddddssssssssddddddddd</div>
     <!-- <div id="container"></div>  -->
   </div>
 </template>
 <script>
 import 'common/js/plusShare.js'
 import Header from '@/base/header/header'
-import { $login, $savetell, $savepass, $register, $sendcode, $ajaxcheckdriver, $driverrelese, $passengerrelese } from '@/common/js/axous.js'
+import { $alipay, $login, $savetell, $savepass, $register, $sendcode, $ajaxcheckdriver, $driverrelese, $passengerrelese } from '@/common/js/axous.js'
+const dateSegmentData = [{
+    is: 'cube-date-picker',
+    title: '入学时间',
+    min: new Date(2000, 0, 1),
+    max: new Date(2030, 11, 31)
+  },
+  {
+    is: 'cube-date-picker',
+    title: '毕业时间',
+    min: new Date(2000, 0, 1),
+    max: new Date(2030, 11, 31)
+  }
+]
+const cadada = [{
+  is: 'cube-date-picker',
+  title: 'Time Picker',
+  min: [0, 0],
+  max: [23, 59],
+  value: new Date(),
+  startColumn: 'hour',
+  columnCount: 2,
+  format: { hour: 'hh', minute: 'mm' }
+}, {
+  is: 'cube-date-picker',
+  title: 'Time Picker1',
+  min: [0, 0],
+  max: [23, 59],
+  value: new Date(),
+  startColumn: 'hour',
+  columnCount: 2,
+  format: { hour: 'hh', minute: 'mm' }
+}]
 export default {
   components: {
     Header
@@ -125,20 +157,20 @@ export default {
     }
   },
   mounted() {
-//     var map = new AMap.Map('container');
-// AMap.plugin('AMap.Driving', function() {
-//   var driving = new AMap.Driving({
-//     // 驾车路线规划策略，AMap.DrivingPolicy.LEAST_TIME是最快捷模式
-//     policy: AMap.DrivingPolicy.LEAST_TIME
-//   })
-  
-//   var startLngLat = [116.379028, 39.865042]
-//   var endLngLat = [116.427281, 39.903719]
-  
-//   driving.search(startLngLat, endLngLat, function (status, result) {
-//     // 未出错时，result即是对应的路线规划方案
-//   })
-// })
+    //     var map = new AMap.Map('container');
+    // AMap.plugin('AMap.Driving', function() {
+    //   var driving = new AMap.Driving({
+    //     // 驾车路线规划策略，AMap.DrivingPolicy.LEAST_TIME是最快捷模式
+    //     policy: AMap.DrivingPolicy.LEAST_TIME
+    //   })
+
+    //   var startLngLat = [116.379028, 39.865042]
+    //   var endLngLat = [116.427281, 39.903719]
+
+    //   driving.search(startLngLat, endLngLat, function (status, result) {
+    //     // 未出错时，result即是对应的路线规划方案
+    //   })
+    // })
     console.log(this.mTokm(12312313))
     let data = {
       beginaddress: 1,
@@ -153,31 +185,43 @@ export default {
       type: 1,
       tell: 1
     }
-    $driverrelese(data).then(res => {
-      console.log(res)
-    })
+    // $driverrelese(data).then(res => {
+    //   console.log(res)
+    // })
     $passengerrelese(data).then(res => {
       console.log(res)
     })
+    this.dateSegmentPicker = this.$createSegmentPicker({
+      data: cadada,
+      onSelect: (selectedDates, selectedVals, selectedTexts) => {
+        console.log(selectedVals)
+      },
+      onNext: (i, selectedDate, selectedValue, selectedText) => {
+        console.log(selectedValue)
+      }
+    })
   },
   methods: {
-    sdsd(){
+    showDateSegmentPicker() {
+      this.dateSegmentPicker.show()
+    },
+    sdsd() {
       //分享内容，开发者可自定义
-    var message = {
+      var message = {
         title: "plusShare示例", //应用名字
         content: "plusShare基于HTML5+的share模块，开发者只需调用一个API，即可调起微信好友、微信朋友圈、系统更多分享功能",
         href: "https://mp.weixin.qq.com/s/pTB1wDjzutXOhZeuTigiDA", //分享出去后，点击跳转地址
         thumbs: ["http://img-cdn-qiniu.dcloud.net.cn/icon3.png"] //分享缩略图
-    }
-    //调起分享
-    window.plusShare(message, function(res) {
+      }
+      //调起分享
+      window.plusShare(message, function(res) {
         //分享回调函数
-        if(res) {
-            plus.nativeUI.toast("分享成功");
+        if (res) {
+          plus.nativeUI.toast("分享成功");
         } else {
-            plus.nativeUI.toast("分享失败");
+          plus.nativeUI.toast("分享失败");
         }
-    })
+      })
     },
     mTokm(x) {
       return Math.floor((x / 1000) * 100) / 100
@@ -188,7 +232,13 @@ export default {
       })
     },
     login1() {
-      window.location.href="http://uri.amap.com/navigation?from=116.478346,39.997361,startpoint&to=116.3246,39.966577,endpoint&via=116.402796,39.936915,midwaypoint&mode=car&policy=1&src=mypage&coordinate=gaode&callnative=0"
+      $alipay().then(res => {
+        const div = document.createElement('div');
+        div.innerHTML = (res.data);
+        document.body.appendChild(div);
+        document.forms.alipaysubmit.submit();
+      })
+      // window.location.href="http://ssf.hasaigei.com/aliwap/wappay/pay.php"
     },
     tzym() {
       this.$router.push({
@@ -210,7 +260,8 @@ export default {
         time: 1000,
         txt: 'You selected >1M files'
       }).show()
-    }
+    },
+
   }
 }
 
@@ -218,12 +269,18 @@ export default {
 <style lang="scss" scoped>
 @import '~@/common/scss/const.scss';
 @import '~@/common/scss/mymixin.scss';
-.sss{
-  width:100px;
-  height:100px;
+
+.sss {
+  width: 100px;
+  height: 100px;
   background: #ccc;
 }
-#container {width:300px; height: 180px; }  
+
+#container {
+  width: 300px;
+  height: 180px;
+}
+
 .hello {
   // display:none;
 }
