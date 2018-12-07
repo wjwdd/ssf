@@ -76,6 +76,8 @@
     <div class="sss" @click='login1'>sddddddddddddd</div>
     <div @click='showDateSegmentPicker'>sddddssssssssddddddddd</div>
     <!-- <div id="container"></div>  -->
+    <div id="container"></div>
+    <div id="panel"></div>
   </div>
 </template>
 <script>
@@ -157,6 +159,8 @@ export default {
     }
   },
   mounted() {
+
+
     //     var map = new AMap.Map('container');
     // AMap.plugin('AMap.Driving', function() {
     //   var driving = new AMap.Driving({
@@ -200,8 +204,36 @@ export default {
         console.log(selectedValue)
       }
     })
+    let begin = '116.379028,39.865042'
+    let back = '116.427281,39.903719'
+    this.guihualuxian(begin, back)
   },
   methods: {
+
+    guihualuxian(a, b) {
+      let arra = a.split(',')
+      let arrb = b.split(',')
+      let begin = new AMap.LngLat(arra[0], arra[1])
+      let back = new AMap.LngLat(arrb[0], arrb[1])
+      let map = new AMap.Map("container");
+      AMap.plugin(['AMap.ToolBar', 'AMap.Driving'], function() { //异步同时加载多个插件
+
+        //构造路线导航类
+        var driving = new AMap.Driving({
+          map: map,
+          // panel: "panel"
+        });
+        // 根据起终点经纬度规划驾车导航路线
+        driving.search(begin, back, function(status, result) {
+          // result 即是对应的驾车导航信息，相关数据结构文档请参考  https://lbs.amap.com/api/javascript-api/reference/route-search#m_DrivingResult
+          if (status === 'complete') {
+            // log.success('绘制驾车路线完成')
+          } else {
+            // log.error('获取驾车数据失败：' + result)
+          }
+        });
+      });
+    },
     showDateSegmentPicker() {
       this.dateSegmentPicker.show()
     },
@@ -277,8 +309,8 @@ export default {
 }
 
 #container {
-  width: 300px;
-  height: 180px;
+  width: 100%;
+  height: 100vh;
 }
 
 .hello {
